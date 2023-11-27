@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Find Things Website</title>
+  <style>
+    /* Basic styling for search box, results, and footer */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background-color: #f0f0f0;
+    }
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      text-align: center;
+      min-height: calc(100vh - 50px); /* Adjust for footer height */
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    .search-box {
+      width: calc(100% - 20px);
+      padding: 12px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      font-size: 16px;
+      transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    }
+    .search-box:focus {
+      outline: none;
+      border-color: #3498db;
+      box-shadow: 0 2px 8px rgba(52, 152, 219, 0.5);
+    }
+    .search-results {
+      text-align: left;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      width: 100%; /* Ensure full width */
+      box-sizing: border-box; /* Include padding in width calculation */
+    }
+    .search-results ul {
+      list-style: none;
+      padding: 0;
+    }
+    .search-results li {
+      margin-bottom: 10px;
+    }
+    /* Footer styles */
+    .footer {
+      width: 100%;
+      height: 50px; /* Adjust height as needed */
+      background-color: #333;
+      color: #fff;
+      line-height: 50px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Thing Finder</h1>
+	<h1>Over 40+ Things Added. Next Week Next Update</h1>
+    <!-- Search box -->
+    <input type="text" id="searchInput" class="search-box" placeholder="Search for things...">
+    <!-- Results section -->
+    <div class="search-results" id="results"></div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <p>&copy; 2023 Thing Finder. All rights reserved.</p>
+  </div>
+
+  <!-- Dummy data for demonstration purposes -->
+  <script>
+    // Dummy list of things
+    const thingsList = [
+      "Car",
+      "Tree",
+      "Book",
+      "Chair",
+	  "Laptop",
+      "Cat",
+      "House",
+      "Pen",
+	  "Table",
+      "Phone",
+      "Dog",
+      "Bicycle",
+	  "Flower",
+      "Lamp",
+      "Watch",
+      "Backpack",
+	  "Television",
+      "Shoes",
+      "Guitar",
+      "Pizza",
+	  "Coffee Mug",
+      "Jacket",
+      "Sunglasses",
+      "Pillow",
+	  "Plant",
+      "Keychain",
+      "Headphones",
+      "Wallet",
+	  "Clock",
+      "Umbrella",
+      "Hat",
+      "Soap",
+	  "Mirror",
+      "Spoon",
+      "Fork",
+      "Toothbrush",
+	  "Towel",
+      "Picture Frame",
+      "Scissors",
+      "Gloves",
+	  "Blanket",
+      "Camera",
+      "Pencil",
+      "Calendar",
+	  "Bracelet",
+      "Painting",
+      "Perfume",
+      "Basket",
+      // Add more items as needed
+    ];
+
+    // Function to perform search and display results
+    function searchThings() {
+      const searchQuery = document.getElementById("searchInput").value.toLowerCase();
+      const resultsContainer = document.getElementById("results");
+      resultsContainer.innerHTML = ""; // Clear previous results
+
+      if (searchQuery.trim() === "") {
+        resultsContainer.innerHTML = "<p>Please enter a search query.</p>";
+        return;
+      }
+
+      const matchingThings = thingsList.filter(thing =>
+        thing.toLowerCase().includes(searchQuery)
+      );
+
+      if (matchingThings.length === 0) {
+        resultsContainer.innerHTML = "<p>No results found.</p>";
+      } else {
+        const ul = document.createElement("ul");
+        matchingThings.forEach(thing => {
+          const li = document.createElement("li");
+          li.textContent = thing;
+          ul.appendChild(li);
+        });
+        resultsContainer.appendChild(ul);
+      }
+
+      // Show search attempt message
+      resultsContainer.insertAdjacentHTML('afterbegin', `<p>You were trying to search</p>`);
+    }
+
+    // Event listener for input changes
+    document.getElementById("searchInput").addEventListener("input", searchThings);
+  </script>
+</body>
+</html>
